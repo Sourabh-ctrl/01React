@@ -102,7 +102,7 @@
 }
 .search-box input{
     /* flex: 1; */
-    width:100px;
+    width:120px;
     background: none;
     border: none;
     outline: none;
