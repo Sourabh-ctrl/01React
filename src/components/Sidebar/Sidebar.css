@@ -1,0 +1,135 @@
+.sidebar{
+    min-height: 100vh;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #f0f4f9;
+    padding: 25px 15px;
+    /* transition: 5s; */
+    animation: slideleft 1.5s;
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    z-index: 1;
+    
+}
+.sidebar img{
+    width: 20px; 
+    z-index: 3;
+}
+.sidebar .menu{
+    display: block;
+    margin-left: 10px;
+    cursor: pointer;    
+
+}
+.sidebar .new-chat{
+    margin-top: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 15px;
+    background: #e6eaf1;
+    border-radius: 50px;
+    font-size: 14px;
+    color: grey;
+    cursor: pointer;
+    
+}
+.sidebar .new-chat p{
+    animation: slideleft 0.5s;
+}
+.sidebar .new-chat img{
+    width: 16px;
+}
+
+.sidebar .recent{
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 1.5s;
+    /* animation: slide 1.5s; */
+
+}
+
+.sidebar .recent-title{
+    margin-top: 30px;
+    margin-bottom: 20px;
+
+}
+.sidebar .recent-entry{
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    padding: 10px;
+    padding-right: 40px ;
+    border-radius: 50px;
+    color: #282828;
+    cursor: pointer;
+}
+.sidebar .recent-entry:hover{
+    background: #e2e6eb;
+}
+.sidebar .bottom{
+    display: flex;
+    flex-direction: column;
+
+
+}
+.sidebar .bottom p{
+    animation: slideleft 0.5s;
+    z-index: 2;
+}
+.sidebar .bottom-item{
+    padding-right: 10px;
+    cursor: pointer;
+}
+@media (max-width : 500px) {
+
+    .hide{
+    display: none;
+    }
+    .sidebar .menu {
+        display: none;
+    }
+    .sidebar .new-chat{
+        display: none;
+    }
+    .sidebar .bottom{
+        display: none;
+
+    }
+    .sidebar{
+        min-width: 100%;
+        padding-left: 20px;
+        animation: slide 0.5s;
+
+    }
+}
+.top .hidden{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.top .hidden img{
+    width: 30px;
+}
+.top .hidden p{
+    font-size: 18px;
+}
+
+@keyframes slide {
+    0%{
+        transform: translateY(50%);
+    }
+    100%{
+        transform: translateY(0%);
+    }
+    
+}
+@keyframes slideleft {
+    0%{
+        transform: translate(-50%);
+    }
+    100%{
+        transform: translate(0%);
+    }
+    
+}
