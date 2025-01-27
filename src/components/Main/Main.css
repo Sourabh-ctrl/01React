@@ -86,7 +86,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 10px;
     background-color: #f0f4f9;
     padding: 15px 20px;
     border-radius: 50px;
@@ -101,7 +101,8 @@
     gap: 10px;
 }
 .search-box input{
-    
+    /* flex: 1; */
+    width:100px;
     background: none;
     border: none;
     outline: none;
@@ -197,11 +198,10 @@ line-height: 1.8;
     .card{
         display: none;
     }
-     .main-bottom{
-        min-width: 300px;
-    
-
+    .main-bottom{
+        bottom: 50;
     }
+  
 }
 @keyframes slidebottom {
     0%{
