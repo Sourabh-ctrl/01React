@@ -101,7 +101,7 @@
     gap: 10px;
 }
 .search-box input{
-    flex: 1;
+    
     background: none;
     border: none;
     outline: none;
@@ -196,6 +196,11 @@ line-height: 1.8;
  
     .card{
         display: none;
+    }
+     .main-bottom{
+        min-width: 400px;
+    
+
     }
 }
 @keyframes slidebottom {
