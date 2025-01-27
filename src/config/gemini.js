@@ -9,7 +9,7 @@ import {
 
 
 
-const apiKey = import.meta.env.VITE_SOME_KEY;
+const apiKey = "AIzaSyDAhX9yBeZ_DMSA0TYQ7l7sE4VzSXkSxpk";
 const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({
