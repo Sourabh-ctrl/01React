@@ -1,8 +1,10 @@
+
 .main{
     flex: 1;
     min-height: 100vh;
     padding-bottom: 15vh;
     position: relative;
+  background: #000;    
 
 
 }
@@ -13,11 +15,12 @@
     justify-content: space-between;
     font-size: 25px;
     padding: 20px;
-    color: #585858;
+    color: #ff5546;
 }
-.content p{
-    /* padding-top: -20px  */
-    font-size: 15px;
+.content img{
+   min-width: 100px;
+  
+
 
 }
 .main .nav img{
@@ -32,13 +35,14 @@
 .main-container .greet{
     margin: 50px 0px;
     font-size: 56px;
-    color: #c4c7c5;
+    color: #333;
     font-weight: 500;
     padding: 20px;
    animation: fadeIn 1.5s;
 }
+
 .main .greet span{
-    background: -webkit-linear-gradient(16deg, #4b90ff,#ff5546);
+    background: -webkit-linear-gradient(14deg,#fff,#ff5546);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -86,14 +90,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
-    background-color: #f0f4f9;
+    gap: 10px;
+    background-color: transparent;
+    border: 2px solid #ff0000;
     padding: 15px 20px;
     border-radius: 50px;
 }
 .search-box img{
     width: 24px;
     cursor: pointer;
+    /* border: 2px solid #333; */
+    border-radius: 50% ;
 }
 .search-box div{
     display: flex;
@@ -101,12 +108,85 @@
     gap: 10px;
 }
 .search-box input{
-    flex: 1;
+    /* flex: 1; */
+    max-width:200px;
     background: none;
     border: none;
     outline: none;
     padding: 4px;
     font-size: 16px;
+    color: #fff;
+    
+}
+.search-box .cover{
+    width: 40px;
+    height: 40px;
+    background: red;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-animation: breathing 2s ease-out infinite normal;
+    animation: breathing 2s ease-out infinite normal;
+    font-size: 16px;
+    background: #ff5546;
+    color: #fff;
+    /* border-radius: 2px; */
+    text-align: center;    
+    }
+
+
+@-webkit-keyframes breathing {
+  0% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  25% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  60% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  100% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
+
+@keyframes breathing {
+  0% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  25% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  60% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  100% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
+
+
+.listen{
+    font-size: 400px;
 }
 .result{
     padding: 0px 5%;
@@ -122,11 +202,12 @@
     margin: 40px 0;
     position: absolute; 
     right: 40px;
-    background: #f0f4f9;
+    background: #ff0000;
     padding: 15px 25px;
     border-radius: 40px 0 40px 40px;
 
 }
+
 .result img{
     width: 30px;
     border-radius: 50%;
@@ -151,7 +232,7 @@
     border-radius: 4px;
     border: none;
     background-color: #f6f7f8;
-    background: linear-gradient(to right, #9ed7ff,#ffffff,#9ed7ff);
+    background: linear-gradient(to right, #ff5546,#000,#ff5546);
     background-size: 800px 50px;
     height: 13px;
     animation: loader  3s infinite linear;
@@ -171,6 +252,7 @@
 font-size: 17px;
 font-weight: 300;
 line-height: 1.8;
+color: #fff;
 }
 .msg{
     height: 20px;
@@ -197,6 +279,14 @@ line-height: 1.8;
     .card{
         display: none;
     }
+    .main-bottom{
+        position: absolute;
+        /* padding-top: 150px; */
+        /* padding-bottom: 0; */
+        bottom: 0;
+    }
+   
+  
 }
 @keyframes slidebottom {
     0%{
