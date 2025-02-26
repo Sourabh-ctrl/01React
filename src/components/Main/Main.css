@@ -94,6 +94,7 @@
     background-color: #000;
     padding: 15px 20px;
     border-radius: 50px;
+    border : 2px solid f0f4f9;
 }
 .search-box img{
     width: 24px;
