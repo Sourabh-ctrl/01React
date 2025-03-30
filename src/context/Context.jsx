@@ -17,6 +17,7 @@ const ContextProvider = (props) => {
   const [seen, setseen] = useState(true);
   const [voice, setvoice] = useState(false);
   const [data, setdata] = useState("")
+  const [speaking, setspeaking] = useState(false);
 
 
   const { transcript, resetTranscript, browserSupportsSpeechRecognition } =
@@ -38,28 +39,59 @@ const ContextProvider = (props) => {
       console.log(transcript);
     }
   };
-  useEffect (() => {
+  const speech = () => {
+    setspeaking(true);
     const synth = window.speechSynthesis;
-    const utterance = new SpeechSynthesisUtterance(data);
-    var voices = window.speechSynthesis.getVoices();
-    utterance.voice = voices[10];
-    utterance.rate = 1;
-    utterance.pitch = 1;
-    utterance.volume = 5;
-    utterance.lang = "en - IN";
-    synth.speak(utterance);      
-    console.log(data);
-    return () => {
+    const newdata = stripHTMLTags(data);
+    if (speaking) {
+      setspeaking(false);
       synth.cancel();
+      return; // Exit function to stop speech
+  }
+
+    const utterance = new SpeechSynthesisUtterance(newdata);
+
+    // Function to set the voice correctly
+    const setVoice = () => {
+        let voices = synth.getVoices();
+        // console.log(voices); // Check available voices in console
+
+        if (voices.length > 0) {
+            utterance.voice = voices.find(voice => voice.lang === "en-IN") || voices[19]; // Pick Indian English or fallback
+            synth.speak(utterance);
+        } else {
+            console.warn("No voices available yet, retrying...");
+            setTimeout(setVoice, 100); // Retry after a short delay
+        }
     };
-  },[loading])
-  
+
+    // Ensure voices are loaded before setting
+    if (synth.getVoices().length === 0) {
+        synth.onvoiceschanged = setVoice;
+    } else {
+        setVoice();
+    }
+    console.log(newdata);
+
+    window.addEventListener("beforeunload", () => synth.cancel());
+    return () => {
+        synth.cancel();
+    setspeaking(false)
+
+       
+    };
+};
+
 
   const delayPara = (index, nextWord) => {
     setTimeout(() => {
       setResultData((prev) => prev + nextWord);
     }, 75 * index ) 
   };
+  
+  function stripHTMLTags(str) {
+    return str.replace(/<\/?[^>]+(>|$)/g, "");
+}
 
   
   const Para = (index, nextWord) => {
@@ -133,7 +165,8 @@ const ContextProvider = (props) => {
     listen,
     transcript,
     resetTranscript,
-    data, setdata
+    data, setdata,speech,
+    speaking
   };
 
   return (

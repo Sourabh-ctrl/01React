@@ -41,8 +41,10 @@
    animation: fadeIn 1.5s;
 }
 
+
+
 .main .greet span{
-    background: -webkit-linear-gradient(14deg,#fff,#ff5546);
+    background: -webkit-linear-gradient( 90deg,#000, red);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -94,7 +96,7 @@
     background-color: #000;
     padding: 15px 20px;
     border-radius: 50px;
-    border : 2px solid f0f4f9;
+    border : 1px solid #fff;
 }
 .search-box img{
     width: 24px;
@@ -209,13 +211,24 @@
 }
 
 .result img{
-    width: 30px;
+    width: 35px;
     border-radius: 50%;
 }
+.result-data .left{
+    margin-top: -10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 35px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    align-items: center;
+}
+
 .result-data{
     margin-top: 130px;   
     display: flex;
-    
     align-items: start;
     /* width: 900px; */
     /* justify-content: center; */

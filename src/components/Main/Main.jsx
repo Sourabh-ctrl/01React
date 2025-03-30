@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import "./Main.css";
 import { assets } from "../../assets/assets";
 import { Context } from "../../context/Context";
@@ -7,6 +7,8 @@ import { RiVoiceAiLine } from "react-icons/ri";
 import { MdOutlineMic } from "react-icons/md";
 import { IoSend } from "react-icons/io5";
 import img from '../../assets/devil.jpg'
+import { FaVolumeMute } from "react-icons/fa";
+import { FaVolumeUp } from "react-icons/fa";
 
 const Main = () => {
   const {
@@ -23,7 +25,9 @@ const Main = () => {
     newChat,
     listen,
     listening,
-    transcript, 
+    transcript,
+    speech,
+    speaking
   } = useContext(Context);
 
   return (
@@ -55,26 +59,43 @@ const Main = () => {
               <p>{recentPrompt}</p>
             </div>
             <div className="result-data">
+              <div className="left">
               <img src={assets.new3} alt="" />
-              {loading ? (
-                <div className="loader">
-                  <hr />
-                  <hr />
-                  <hr />
-                </div>
-              ) : (
-                <p  dangerouslySetInnerHTML={{ __html: resultData }}></p>
-              )}
+              {
+                speaking?(
+                  <FaVolumeUp  onClick={() => {
+                    speech();
+                  }} size={25}/>
+                ) : (
+                  <FaVolumeMute  onClick={() => {
+                    speech();
+                  }} size={25}/>
+                )
+              }
             </div>
+            {loading ? (
+              <div className="loader">
+                <hr />
+                <hr />
+                <hr />
+              </div>
+            ) : (
+              <>
+
+                <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
+
+              </>
+            )}
+          </div>
           </div>
         )}
 
-        <div className="main-bottom">
-          <div className="search-box">
-            <div>
-             <img src={assets.logo} alt="" />
+      <div className="main-bottom">
+        <div className="search-box">
+          <div>
+            <img src={assets.logo} alt="" />
 
-              {listening?
+            {listening ?
               <input
                 onKeyDown={(e) => {
                   if (e.key === "Enter") onSent();
@@ -85,7 +106,7 @@ const Main = () => {
                 value={transcript}
                 type="text"
                 placeholder="Enter a prompt here"
-              />:
+              /> :
               <input
                 onKeyDown={(e) => {
                   if (e.key === "Enter") onSent();
@@ -97,8 +118,8 @@ const Main = () => {
                 type="text"
                 placeholder="Enter a prompt here"
               />}
-            </div>
-            <div>
+          </div>
+          <div>
             {input ? (
               <IoSend size={25} color="red"
                 onClick={() => {
@@ -106,21 +127,21 @@ const Main = () => {
                 }}
               />
             ) : (
-            <div className={listening?"cover":null} >
-              <MdOutlineMic size={25} color="#fff"
-                onClick={listen}
-              />
+              <div className={listening ? "cover" : null} >
+                <MdOutlineMic size={25} color="#fff"
+                  onClick={listen}
+                />
               </div>
             )}
-              <RiVoiceAiLine onClick={()=>{
-                setvoice(true)
-                newChat();
-              }} className="voice" size={25} color="#ff5546"/>
-              </div>
+            <RiVoiceAiLine onClick={() => {
+              setvoice(true)
+              newChat();
+            }} className="voice" size={25} color="#ff5546" />
           </div>
         </div>
       </div>
     </div>
+    </div >
   );
 };
 
