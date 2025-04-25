@@ -29,6 +29,7 @@ const ContextProvider = (props) => {
   }
 
   const listen = () => {
+    resetTranscript() 
     SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
     setInput(transcript);
     setlistening(true);
@@ -38,6 +39,7 @@ const ContextProvider = (props) => {
       SpeechRecognition.abortListening();
       console.log(transcript);
     }
+    
   };
   const speech = () => {
     setspeaking(true);
@@ -47,60 +49,59 @@ const ContextProvider = (props) => {
       setspeaking(false);
       synth.cancel();
       return; // Exit function to stop speech
-  }
+    }
 
     const utterance = new SpeechSynthesisUtterance(newdata);
 
     // Function to set the voice correctly
     const setVoice = () => {
-        let voices = synth.getVoices();
-        // console.log(voices); // Check available voices in console
+      let voices = synth.getVoices();
+      console.log(voices); // Check available voices in console
 
-        if (voices.length > 0) {
-            utterance.voice = voices.find(voice => voice.lang === "en-IN") || voices[19]; // Pick Indian English or fallback
-            synth.speak(utterance);
-        } else {
-            console.warn("No voices available yet, retrying...");
-            setTimeout(setVoice, 100); // Retry after a short delay
-        }
+      if (voices.length > 0) {
+        utterance.voice = voices.find(voice => voice.lang === "en-IN") || voices[19]; // Pick Indian English or fallback
+        synth.speak(utterance);
+      } else {
+        console.warn("No voices available yet, retrying...");
+        setTimeout(setVoice, 100); // Retry after a short delay
+      }
     };
 
     // Ensure voices are loaded before setting
     if (synth.getVoices().length === 0) {
-        synth.onvoiceschanged = setVoice;
+      synth.onvoiceschanged = setVoice;
     } else {
-        setVoice();
+      setVoice();
     }
     console.log(newdata);
 
     window.addEventListener("beforeunload", () => synth.cancel());
     return () => {
-        synth.cancel();
-    setspeaking(false)
+      synth.cancel();
 
-       
+
     };
-};
+  };
 
 
   const delayPara = (index, nextWord) => {
     setTimeout(() => {
       setResultData((prev) => prev + nextWord);
-    }, 75 * index ) 
+    }, 75 * index)
   };
-  
+
   function stripHTMLTags(str) {
     return str.replace(/<\/?[^>]+(>|$)/g, "");
-}
+  }
 
-  
+
   const Para = (index, nextWord) => {
     setTimeout(() => {
       setdata((prev) => prev + nextWord);
-    },) 
+    },)
   };
 
-  
+
 
 
   const newChat = () => {
@@ -109,6 +110,7 @@ const ContextProvider = (props) => {
   };
 
   const onSent = async (prompt) => {
+    setspeaking(false);
     resetTranscript();
     setResultData("");
     setLoading(true);
@@ -139,7 +141,7 @@ const ContextProvider = (props) => {
       const nextWord = newResponseArray[i];
       delayPara(i, nextWord + " ");
       Para(i, nextWord + " ");
-      
+
     }
     setLoading(false);
     setInput("");
@@ -165,7 +167,7 @@ const ContextProvider = (props) => {
     listen,
     transcript,
     resetTranscript,
-    data, setdata,speech,
+    data, setdata, speech,
     speaking
   };
 

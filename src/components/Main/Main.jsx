@@ -105,7 +105,7 @@ const Main = () => {
                 }}
                 value={transcript}
                 type="text"
-                placeholder="Enter a prompt here"
+                placeholder="Ask Me Anything"
               /> :
               <input
                 onKeyDown={(e) => {
@@ -116,7 +116,7 @@ const Main = () => {
                 }}
                 value={input}
                 type="text"
-                placeholder="Enter a prompt here"
+                placeholder="Ask Me Anything"
               />}
           </div>
           <div>
@@ -133,10 +133,10 @@ const Main = () => {
                 />
               </div>
             )}
-            <RiVoiceAiLine onClick={() => {
+            {/* <RiVoiceAiLine onClick={() => {
               setvoice(true)
               newChat();
-            }} className="voice" size={25} color="#ff5546" />
+            }} className="voice" size={25} color="#ff5546" /> */}
           </div>
         </div>
       </div>

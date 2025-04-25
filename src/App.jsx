@@ -10,8 +10,9 @@ const App = () => {
   
   return (
    <> <Sidebar/>
-{voice?<Voice/>: 
- <Main/>}
+{/* {voice?<Voice/>: 
+ <Main/>} */}
+  <Main/>
 
 </>  )
 }
