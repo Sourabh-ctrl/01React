@@ -115,6 +115,7 @@ const ContextProvider = (props) => {
     setResultData("");
     setLoading(true);
     setShowResult(true);
+    setlistening(false);
     setdata("")
     let response;
     if (prompt !== undefined) {
